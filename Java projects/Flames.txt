@@ -1,0 +1,102 @@
+package starter.java;
+import java.util.Scanner;
+public final class Flames {
+
+	public static void main(String[] args) 
+	{
+		int count=0;
+		Scanner sc = new Scanner(System.in);
+		String a,b;
+		System.out.println("Enter the name of the first person:");
+		a = sc.next();
+		System.out.println("Enter the name of the second person:");
+		b= sc.next();
+		int arr[] = new int[10];
+		for(int i=0;i<a.length();i++)
+		{
+			for(int j=0;j<b.length();j++)
+			{
+				if( (a.charAt(i) == b.charAt(j)))
+				{
+					if(arr[j] == 0)
+					{
+						count+=2;
+						arr[j]++;
+						break;
+			        }
+					
+				}
+			}
+		}
+		int strikecount=0;
+		int total_sum = a.length() + b.length() - count;
+		String result = "FLAMES";
+		int flamecount[] = new int[6];
+		int start = 0;
+		while(true)
+		{
+			int temp = total_sum;
+			while(temp!=0) 
+			{
+			   for(int ip=start;ip<6;ip++)
+			   {
+				   start=0;
+				   if(flamecount[ip] > 0)
+				   {
+					   continue;
+				   }
+				   temp--; 
+				   
+				   if(temp==0)
+				   {
+					   flamecount[ip]++;
+					   strikecount++;
+					   if(ip == 5)start=0;
+					   else
+						   start = ip+1;
+					   break;
+				   }
+			   }
+			}
+			if(strikecount == 5)
+				break;
+		}
+		int remain = 0;
+		for(int i=0;i<6;i++)
+		{
+			if(flamecount[i] == 0)
+				{
+				remain =i;
+				break;
+				}
+			
+		}
+		char ch = result.charAt(remain);
+		
+		switch(ch)
+		{
+		case 'F':
+			System.out.println("You are FRIENDS");
+			break;
+		case 'L':
+			System.out.println("You both are in LOVE");
+			break;
+		case 'A':
+			System.out.println("You both have AFFECTION towards each other");
+			break;
+		case 'M':	
+			System.out.println("You both will get MARRIED soon");
+			break;
+		case 'E':
+			System.out.println("You both are ENEMIES");
+			break;
+		case 'S':
+			System.out.println("You both are siblings");
+			break;
+			
+		}
+		sc.close();
+		
+	}
+	
+}
